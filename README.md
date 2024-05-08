@@ -1,0 +1,2 @@
+集成了常用中间件和数据库以及机器基础指标的看板和告警规则，不断补充和完善中，包括了redis、mysql、kafka、
+zookeeper、elasticsearc等监控看板和告警规则
