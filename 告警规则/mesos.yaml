@@ -1,0 +1,25 @@
+groups:
+
+- name: MesosDocker
+
+  rules:
+
+    - alert: docker内存使用率超过80%
+      expr: mesosdocker_mem_rate > 80 
+      for: 0m
+      labels:
+        severity: critical
+      annotations:
+        summary: mesos docker mem usage greater than 80% (instance {{ $labels.instance }})
+        description: "mesos docker mem usage greater than 80% \n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        value: "{{ $value }}" 
+
+    - alert: docker内存使用10分钟增长了20%
+      expr: delta(mesosdocker_mem_rate[10m]) > 20 
+      for: 0m
+      labels:
+        severity: warning
+      annotations:
+        summary: mesos docker mem usage greater than 90% (instance {{ $labels.instance }})
+        description: "mesos docker mem usage greater than 90% \n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        value: "{{ $value }}"
